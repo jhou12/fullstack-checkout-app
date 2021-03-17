@@ -1,28 +1,61 @@
-const mongoose = require('mongoose');
-mongoose.connect(`mongodb://localhost/${process.env.MONGO_DB || 'test'}`, {useNewUrlParser: true, useUnifiedTopology: true});
+const mongoose = require('mongoose')
+mongoose.connect(`mongodb://localhost/${process.env.MONGO_DB || 'checkout'}`, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log('mongoose connected!'));
 
-const testSchema = new mongoose.Schema({
-  testId: Number,
-  testText: String
-});
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
+db.once('open', function() {
+  console.log('Mongoose connected!')
+})
 
-const Test = mongoose.model('Test', testSchema);
+const formSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+  line1: String,
+  line2: String,
+  city: String,
+  state: String,
+  zipcode: String,
+  phone: String,
+  ccn: String,
+  exp: String,
+  cvv: String,
+  ccZipcode: String,
+  confirmed: Boolean,
+})
 
-const readAll = async () => {
-  try {
-    let entries = await Test.find({});
-    return entries
-  } catch(e) {
-    console.log('db readAll error:', e)
-  }
+const Form = mongoose.model('Form', formSchema)
+
+let makeId = (cb) => {
+  let blank = new Form()
+  console.log('MONGOOSE NEW INSTANCE', blank._id)
+  cb(null, blank._id)
 }
 
-module.exports = {
-  mongoose,
-  Test,
-  readAll,
+let saveForm = (form, cb) => {
+  console.log('GOTTEN FORM', form)
+  Form.findOneAndUpdate({_id: form._id}, form, {upsert: true}, function(err, data) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('form updated!')
+      cb()
+    }
+  })
 }
+
+let confirm = (id, cb) => {
+  Form.find({_id: id._id}, function(err, docs) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('BACK FROM DB CONFIRM', docs)
+      cb(null, docs)
+    }
+  })
+}
+
+module.exports.makeId = makeId
+module.exports.saveForm = saveForm
+module.exports.confirm = confirm
