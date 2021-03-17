@@ -9,26 +9,24 @@ class Purchase extends React.Component {
     this.props.onPurchase()
   }
   render() {
-    console.log('PURCHASE PROPS', this.props)
     return (
       <div>
-                  test id: {this.props.state.details._id}
-          <br/>email: {this.props.state.details.email}
+          {/* test id: {this.props.state.details._id} */}
           <br/>name: {this.props.state.details.name}
+          <br/>email: {this.props.state.details.email}
           <br/>password: {this.props.state.details.password}
-          <br/>city: {this.props.state.details.city}
           <br/>line1: {this.props.state.details.line1}
           <br/>line2: {this.props.state.details.line2}
-          <br/>phone: {this.props.state.details.phone}
+          <br/>city: {this.props.state.details.city}
           <br/>state: {this.props.state.details.state}
           <br/>zipcode: {this.props.state.details.zipcode}
-          <br/>ccZipcode: {this.props.state.details.ccZipcode}
+          <br/>phone: {this.props.state.details.phone}
           <br/>ccn: {this.props.state.details.ccn}
-          <br/>cvv: {this.props.state.details.cvv}
           <br/>exp: {this.props.state.details.exp}
-        Confirm?
+          <br/>cvv: {this.props.state.details.cvv}
+          <br/>ccZipcode: {this.props.state.details.ccZipcode}
+          Confirm?
           <br/><button onClick={this.onSend}>Purchase</button>
-
       </div>
     )
   }

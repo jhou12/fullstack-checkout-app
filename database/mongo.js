@@ -29,17 +29,16 @@ const Form = mongoose.model('Form', formSchema)
 
 let makeId = (cb) => {
   let blank = new Form()
-  console.log('MONGOOSE NEW INSTANCE', blank._id)
+  console.log('New ID:', blank._id)
   cb(null, blank._id)
 }
 
 let saveForm = (form, cb) => {
-  console.log('GOTTEN FORM', form)
   Form.findOneAndUpdate({_id: form._id}, form, {upsert: true}, function(err, data) {
     if (err) {
       console.log(err)
     } else {
-      console.log('form updated!')
+      console.log('db form saved!')
       cb()
     }
   })
@@ -50,7 +49,6 @@ let confirm = (id, cb) => {
     if (err) {
       console.log(err)
     } else {
-      console.log('BACK FROM DB CONFIRM', docs)
       cb(null, docs)
     }
   })

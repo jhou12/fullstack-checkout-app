@@ -45,7 +45,6 @@ class App extends React.Component {
     this.onPurchase = this.onPurchase.bind(this)
   }
   onCheckout(e) {
-    console.log('checkout clicked')
     this.setState({
       home: false,
       checkout: true,
@@ -56,7 +55,6 @@ class App extends React.Component {
     })
     axios('/id')
     .then(res => {
-      console.log('id response', res.data)
       this.setState({
         currentId: res.data
       })
@@ -70,7 +68,7 @@ class App extends React.Component {
     form._id = this.state.currentId
     axios.post('/forms', form)
     .then(res => {
-      console.log('sent form1!')
+      console.log('Form1:', res.data)
     })
   }
   onNext2(form) {
@@ -81,7 +79,7 @@ class App extends React.Component {
     form._id = this.state.currentId
     axios.post('/forms', form)
     .then(res => {
-      console.log('sent form2!')
+      console.log('Form2:', res.data)
     })
   }
   onNext3(form) {
@@ -92,10 +90,9 @@ class App extends React.Component {
     form._id = this.state.currentId
     axios.post('/forms', form)
     .then(res => {
-      console.log('sent form3!')
+      console.log('Form3:', res.data)
       axios.post('/confirm', {_id: this.state.currentId})
       .then(res => {
-        console.log('FINAL FORM BACK FROM DB', res.data)
         this.setState({
           details: res.data[0]
         })
@@ -122,44 +119,30 @@ class App extends React.Component {
     .then(res => {
       console.log(res.data)
     })
-
   }
   render() {
     if (this.state.home) {
       return (
         <div>
-          Home
+          Ready to checkout your shopping cart?
         <br/><button onClick={this.onCheckout}>Checkout</button>
-        <StateCheck state={this.state}/>
         </div>
       )
     } else if (this.state.checkout) {
       return (
-        <div>
           <Form1 onNext1={this.onNext1}/>
-          <StateCheck state={this.state}/>
-        </div>
       )
     } else if (this.state.next1) {
       return (
-        <div>
           <Form2 onNext2={this.onNext2}/>
-          <StateCheck state={this.state}/>
-        </div>
       )
     } else if (this.state.next2) {
       return (
-        <div>
           <Form3 onNext3={this.onNext3}/>
-          <StateCheck state={this.state}/>
-        </div>
       )
     } else if (this.state.next3) {
       return (
-        <div>
           <Purchase state={this.state} onPurchase={this.onPurchase}/>
-          <StateCheck state={this.state}/>
-        </div>
       )
     }
   }
