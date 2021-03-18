@@ -6,6 +6,7 @@ import Form2 from './Form2.jsx'
 import Form3 from './Form3.jsx'
 import Purchase from './Purchase.jsx'
 import StateCheck from './StateCheck.jsx'
+import Styles, { Container, Column, Title, ButtonStyled } from './Styles.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -123,26 +124,36 @@ class App extends React.Component {
   render() {
     if (this.state.home) {
       return (
-        <div>
-          Ready to checkout your shopping cart?
-        <br/><button onClick={this.onCheckout}>Checkout</button>
-        </div>
+        <Container>
+          <Column>
+          <Title>Proceed to checkout?</Title>
+          <ButtonStyled onClick={this.onCheckout}>Checkout</ButtonStyled>
+          </Column>
+        </Container>
       )
     } else if (this.state.checkout) {
       return (
+        <Container>
           <Form1 onNext1={this.onNext1}/>
+        </Container>
       )
     } else if (this.state.next1) {
       return (
+        <Container>
           <Form2 onNext2={this.onNext2}/>
+         </Container>
       )
     } else if (this.state.next2) {
       return (
+        <Container>
           <Form3 onNext3={this.onNext3}/>
+        </Container>
       )
     } else if (this.state.next3) {
       return (
+        <Container>
           <Purchase state={this.state} onPurchase={this.onPurchase}/>
+        </Container>
       )
     }
   }

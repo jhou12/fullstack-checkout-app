@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles, { ButtonStyled, FormStyled, TitleSmall } from './Styles.js';
 
 class Form3 extends React.Component {
   constructor(props) {
@@ -29,15 +30,15 @@ class Form3 extends React.Component {
   }
   render() {
     return (
-      <div>
-        Billing Information:
-        <br/>Credit Card Number: <input type="text" name="ccn" onChange={this.Entry}></input>
-        <br/>Exp Date: <input type="text" name="exp" onChange={this.Entry}></input>
-        <br/>CVV: <input type="text" name="cvv" onChange={this.Entry}></input>
-        <br/>Zipcode: <input type="text" name="ccZipcode" onChange={this.Entry}></input>
-        <br/><button onClick={this.checkForm}>Submit Form 3</button>
-        <br/>{this.state.errorMsg}
-    </div>
+        <FormStyled>
+        <TitleSmall>Billing Information:</TitleSmall>
+        Credit Card Number: <input type="text" name="ccn" onChange={this.Entry}></input>
+        Exp Date: <input type="text" name="exp" onChange={this.Entry}></input>
+        CVV: <input type="text" name="cvv" onChange={this.Entry}></input>
+        Zipcode: <input type="text" name="ccZipcode" onChange={this.Entry}></input>
+        <ButtonStyled onClick={this.checkForm}>Submit Form 3</ButtonStyled>
+        {this.state.errorMsg}
+        </FormStyled>
     )
   }
 }

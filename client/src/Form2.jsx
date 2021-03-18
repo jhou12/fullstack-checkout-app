@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles, { ButtonStyled, FormStyled, TitleSmall } from './Styles.js';
 
 class Form2 extends React.Component {
   constructor(props) {
@@ -31,17 +32,17 @@ class Form2 extends React.Component {
   }
   render() {
     return (
-      <div>
-        Address:
-        <br/>Line 1: <input type="text" name="line1" onChange={this.Entry}></input>
-        <br/>Line 2: <input type="text" name="line2" onChange={this.Entry}></input>
-        <br/>City: <input type="text" name="city" onChange={this.Entry}></input>
-        <br/>State: <input type="text" name="state" onChange={this.Entry}></input>
-        <br/>Zipcode: <input type="text" name="zipcode" onChange={this.Entry}></input>
-        <br/>Phone Number: <input type="text" name="phone" onChange={this.Entry}></input>
-        <br/><button onClick={this.checkForm}>Submit Form 2</button>
-        <br/>{this.state.errorMsg}
-    </div>
+      <FormStyled>
+          <TitleSmall>Address:</TitleSmall>
+        Line 1: <input type="text" name="line1" onChange={this.Entry}></input>
+        Line 2: <input type="text" name="line2" onChange={this.Entry}></input>
+        City: <input type="text" name="city" onChange={this.Entry}></input>
+        State: <input type="text" name="state" onChange={this.Entry}></input>
+        Zipcode: <input type="text" name="zipcode" onChange={this.Entry}></input>
+        Phone Number: <input type="text" name="phone" onChange={this.Entry}></input>
+        <ButtonStyled onClick={this.checkForm}>Submit Form 2</ButtonStyled>
+        {this.state.errorMsg}
+        </FormStyled>
     )
   }
 }

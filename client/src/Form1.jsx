@@ -1,4 +1,5 @@
 import React from 'react';
+import Styles, { FormStyled, ButtonStyled, TitleSmall, ErrorStyled } from './Styles.js';
 
 class Form1 extends React.Component {
   constructor(props) {
@@ -28,15 +29,14 @@ class Form1 extends React.Component {
   }
   render() {
     return (
-      <div>
-        <form>
+        <FormStyled>
+          <TitleSmall>User Information:</TitleSmall>
         Name: <input type="text" name="name" onChange={this.Entry} ></input>
-        <br/>Email: <input type="text" name="email" onChange={this.Entry}  ></input>
-        <br/>Password: <input type="text" name="password" onChange={this.Entry}  ></input>
-        <br/><button onClick={this.checkForm}>Submit Form 1</button>
-        <br/>{this.state.errorMsg}
-        </form>
-    </div>
+        Email: <input type="text" name="email" onChange={this.Entry}  ></input>
+        Password: <input type="text" name="password" onChange={this.Entry}  ></input>
+        <ButtonStyled onClick={this.checkForm}>Submit Form 1</ButtonStyled>
+        <ErrorStyled>{this.state.errorMsg}</ErrorStyled>
+        </FormStyled>
     )
   }
 }
