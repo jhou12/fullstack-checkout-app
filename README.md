@@ -1,6 +1,6 @@
 # Fullstack React Checkout App
 
-This app is a multi-part form that generates a unique database entry per each checkout, persists and updates the same entry with new information at each stage, and shows a summary of the saved entry before submission. Made using the MERN stack and React Styled Components.
+This app is a multi-part form that generates a unique database entry per each checkout, persists and updates the same entry with new information at each stage, and shows a summary of the saved entry before submission. Built with the MERN stack using MongoDB, and React Styled Components.
 
 <p align="center">
 <img src="screenshot.png" width="300"/>
